@@ -1,5 +1,5 @@
 FROM binhex/arch-base:20160611-01
-MAINTAINER binhex
+MAINTAINER David Sawatzke <david@sawatzke.de>
 
 # additional files
 ##################
