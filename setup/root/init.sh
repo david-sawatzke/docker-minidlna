@@ -3,7 +3,7 @@
 # exit script if return code != 0
 set -e
 
-# if uid not specified then use default uid for user nobody 
+# if uid not specified then use default uid for user nobody
 if [[ -z "${PUID}" ]]; then
 	PUID="99"
 fi
@@ -44,4 +44,4 @@ chmod -R 775 /usr/bin/minidlnad /home/nobody
 echo "[info] Starting Supervisor..."
 
 # run supervisor
-"/usr/bin/supervisord" -c "/etc/supervisor.conf" -n
+"/usr/bin/supervisord" -c "/etc/supervisor/supervisord.conf" -n

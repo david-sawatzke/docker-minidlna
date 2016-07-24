@@ -5,7 +5,7 @@ MAINTAINER David Sawatzke <david@sawatzke.de>
 ##################
 
 # add supervisor conf file for app
-ADD setup/*.conf /etc/supervisor/conf.d/
+ADD setup/supervisord.conf /etc/supervisor/
 
 # add install bash script
 ADD setup/root/*.sh /root/
