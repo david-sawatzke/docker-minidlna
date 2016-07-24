@@ -1,36 +1,17 @@
-FROM binhex/arch-base:20160611-01
+FROM alpine
 MAINTAINER David Sawatzke <david@sawatzke.de>
 
-# additional files
-##################
+RUN apk add --no-cache minidlna supervisor \
+    # Add share group so the later deletion doesn't fail on the first run
+    # The minidlna user is added by the packet installation
+    && addgroup share
 
-# add supervisor conf file for app
+
+# Add minidlnad.conf template
+ADD minidlnad.conf /
 ADD supervisord.conf /etc/supervisor/
+ADD init.sh /
 
-# add install bash script
-ADD setup/root/*.sh /root/
-
-# add start script - copies custom minidlna.conf file to host
-ADD setup/nobody/*.sh /home/nobody/
-
-# install app
-#############
-
-# make executable and run bash scripts to install app
-RUN chmod +x /root/*.sh /home/nobody/*.sh && \
-	/bin/bash /root/install.sh
-
-# docker settings
-#################
-
-# map /config to host defined config path (used to store configuration from app)
-VOLUME /config
-
-# map /media to host defined media path (used to read/write to media library)
 VOLUME /media
-
-# set permissions
-#################
-
 # run script to set uid, gid and permissions
-CMD ["/bin/bash", "/root/init.sh"]
+CMD ["/init.sh"]
