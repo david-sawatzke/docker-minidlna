@@ -1,4 +1,4 @@
-FROM alpine
+FROM alpine:3.4
 MAINTAINER David Sawatzke <david@sawatzke.de>
 
 RUN apk add --no-cache minidlna supervisor \
