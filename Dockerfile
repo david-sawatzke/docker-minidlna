@@ -1,15 +1,10 @@
 FROM alpine:3.4
 MAINTAINER David Sawatzke <david@sawatzke.de>
 
-RUN apk add --no-cache minidlna supervisor \
-    # Add share group so the later deletion doesn't fail on the first run
-    # The minidlna user is added by the packet installation
-    && addgroup share
-
+RUN apk add --no-cache minidlna
 
 # Add minidlnad.conf template
 ADD minidlnad.conf /
-ADD supervisord.conf /etc/supervisor/
 ADD init.sh /
 
 VOLUME /media

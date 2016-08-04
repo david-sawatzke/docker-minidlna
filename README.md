@@ -32,18 +32,11 @@ docker run -d \
     --name=minidlna \
     -v /media/pictures:/media \
     -v /etc/localtime:/etc/localtime:ro \
-    -e PUID=0 \
-    -e PGID=0 \
+    --user nobody \
     -e UPNP_NAME=media \
     $IMAGENAME
 ```
 
 **Notes**
-
-User ID (PUID) and Group ID (PGID) can be found by issuing the following command for the user you want to run the container as:-
-
-```
-id <username>
-```
 
 You cannot specify the port the docker container uses, it requires full access to the hosts nic and thus the -p flag is not used.
